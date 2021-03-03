@@ -1,12 +1,12 @@
 import { Link } from "gatsby";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
-import styles from "./article-preview.module.css";
+import { preview, previewTitle } from "./article-preview.module.css";
 
-export default ({ article }) => (
-  <div className={styles.preview}>
-    <Img alt="" fluid={article.heroImage.imgixImage.fluid} />
-    <h3 className={styles.previewTitle}>
+const ArticlePreview = ({ article }) => (
+  <div className={preview}>
+    <GatsbyImage alt="" image={article.heroImage.imgixImage.gatsbyImageData} />
+    <h3 className={previewTitle}>
       <Link to={`/blog/${article.slug}`}>{article.title}</Link>
     </h3>
     <small>{article.publishDate}</small>
@@ -17,3 +17,5 @@ export default ({ article }) => (
     />
   </div>
 );
+
+export default ArticlePreview;

@@ -1,17 +1,14 @@
 import { buildFluidImageData } from "@imgix/gatsby";
+import { graphql } from "gatsby";
 import Img from "gatsby-image";
 import get from "lodash/get";
 import React from "react";
 import { Helmet } from "react-helmet";
+import { P_IMAGES } from "../common/constants";
+import { pickRandom } from "../common/utils";
 import ArticlePreview from "../components/article-preview";
 import Hero from "../components/hero";
 import Layout from "../components/layout";
-
-const SICK_IMAGES = [
-  "https://images.unsplash.com/photo-1501248457956-c25fd1de2930",
-  "https://images.unsplash.com/photo-1541888050297-a615ca315e96",
-  "https://images.unsplash.com/photo-1560829571-cb3e34498fb3",
-];
 
 const RootIndex = (props) => {
   const siteTitle = get(props, "data.site.siteMetadata.title");
@@ -37,7 +34,7 @@ const RootIndex = (props) => {
           <h2 className="section-headline">Recent photos</h2>
           <Img
             fluid={buildFluidImageData(
-              SICK_IMAGES[Math.floor(Math.random() * SICK_IMAGES.length)],
+              pickRandom(P_IMAGES),
               { fit: "crop", ar: "2:1", auto: "enhance" },
               { sizes: "(max-width: 1180px) calc(100vw - 90px), 1090px" }
             )}
@@ -66,13 +63,30 @@ export const pageQuery = graphql`
             }
             imgixImage {
               fluid(
-                imgixParams: { fit: "crop", crop: "entropy", auto: "enhance" }
+                imgixParams: {
+                  fit: "crop"
+                  crop: "faces,entropy"
+                  auto: "enhance"
+                  mark: "https://assets.imgix.net/presskit/imgix-presskit.pdf?page=2&fm=png&w=100&dl=imgix_logo1_large.png"
+                  markW: 0.1
+                }
                 maxWidth: 350
                 maxHeight: 196
               ) {
                 ...GatsbyImgixFluid
-                gatsbyImageData(layout: 'CONSTRAINED')
               }
+              gatsbyImageData(
+                layout: CONSTRAINED
+                imgixParams: {
+                  fit: "crop"
+                  crop: "faces,entropy"
+                  auto: "enhance"
+                  mark: "https://assets.imgix.net/presskit/imgix-presskit.pdf?page=4&fm=png&w=100&dl=imgix_logo1_large.png"
+                  markW: 0.3
+                }
+                width: 350
+                height: 196
+              )
             }
           }
           description {

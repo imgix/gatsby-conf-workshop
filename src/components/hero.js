@@ -1,19 +1,21 @@
-import React from 'react'
-import Img from 'gatsby-image'
+import Img from "gatsby-image";
+import React from "react";
+import {
+  hero,
+  heroDetails,
+  heroHeadline,
+  heroImage,
+  heroTitle,
+} from "./hero.module.css";
 
-import styles from './hero.module.css'
-
-export default ({ data }) => (
-  <div className={styles.hero}>
-    <Img
-      className={styles.heroImage}
-      alt={data.name}
-      fluid={data.heroImage.fluid}
-    />
-    <div className={styles.heroDetails}>
-      <h3 className={styles.heroHeadline}>{data.name}</h3>
-      <p className={styles.heroTitle}>{data.title}</p>
+const Hero = ({ data }) => (
+  <div className={hero}>
+    <Img className={heroImage} alt={data.name} fluid={data.heroImage.fluid} />
+    <div className={heroDetails}>
+      <h3 className={heroHeadline}>{data.name}</h3>
+      <p className={heroTitle}>{data.title}</p>
       <p>{data.shortBio.shortBio}</p>
     </div>
   </div>
-)
+);
+export default Hero;
