@@ -30,14 +30,14 @@ This command will ask you for a space ID, and access tokens for the Contentful M
 
 ## Crucial Commands
 
-### `npm run dev`
+### `yarn run dev`
 
 Run the project locally with live reload in development mode.
 
-### `npm run build`
+### `yarn run build`
 
 Run a production build into `./public`. The result is ready to be put on any static hosting you prefer.
 
-### `npm run serve`
+### `yarn run serve`
 
 Spin up a production-ready server with your blog. Don't forget to build your page beforehand.
